@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color: rgb(216, 216, 211);
+            }
+            .row{
+                background: white;
+                border-radius: 30px;
+                box-shadow: 12px 12px 22px grey;
+            }
+            img{
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
+            .btn1{
+                border:none;
+                outline: none;
+                height: 50px;
+                width: 100%;
+                background-color: black;
+                color: white;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            .btn1:hover{
+                background: white;
+                border: 1px solid;
+                color: black;
+            }
+            #organizationProfileForm{
+                display: none;
+            }
+            /* personal error msg */
+            #errorMsg1,#errorMsg2,#errorMsg3,#errorMsg4,#errorMsg5{
+                display: none;
+            }
+            /* organization error msg */
+            #errorMsg6,#errorMsg7,#errorMsg8,#errorMsg9,#errorMsg10,#errorMsg11{
+                display: none;
+            }
+            #errorMsg12{
+                display: none;
+            }
+            #login {
+                font-weight: 600;
+                font-size: 60px;
+                font-style: oblique;
+            }
+        </style>
+        <script type="text/javascript">
+            function dispProfileForm() {
+                if (document.getElementById('personalProfileRadioBtn').checked) {
+                    document.getElementById('personalProfileForm').style.display = 'block';
+                    document.getElementById('organizationProfileForm').style.display = 'none';
+                }
+                else if (document.getElementById('oganizationProfileRadioBtn').checked) {
+                    document.getElementById('personalProfileForm').style.display = 'none';
+                    document.getElementById('organizationProfileForm').style.display = 'block';
+                }
+            }
+
+            function sendData(data,url){
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST",url,true);    
+                xhr.setRequestHeader("Content-Type","application/json");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        // console.log(this.responseText);
+                        if(this.responseText == "personal"){
+                            document.getElementById("personalProfileForm").submit();
+                        }
+                        else if(this.responseText == "organization"){
+                            document.getElementById("organizationProfileForm").submit();
+                        }
+                        document.getElementById("errorMsg12").innerHTML = this.responseText;
+                        document.getElementById("errorMsg12").style.display = "block";
+                    }
+                };
+                xhr.send(JSON.stringify(data));
+            }
+
+            function personalFormValidate(){
+                var fName = document.getElementById("firstName").value;
+                var lName = document.getElementById("lastName").value;
+                var pMob = document.getElementById("personalMobileNumber").value;
+                var pEmail = document.getElementById("personalEmail").value;
+                var pwd = document.getElementById("personalPassword").value;
+                var cPwd = document.getElementById("confirmPersonalPassword").value;
+
+                if(fName=="" || lName=="" || pMob=="" || pEmail=="" || pwd=="" || cPwd==""){
+                    document.getElementById("errorMsg1").style.display = "block";
+                    document.getElementById("errorMsg2").style.display = "none";
+                    document.getElementById("errorMsg3").style.display = "none";
+                    document.getElementById("errorMsg4").style.display = "none";
+                    document.getElementById("errorMsg5").style.display = "none";
+                    document.getElementById("errorMsg12").style.display = "none";
+                    return false;
+                }
+                else{
+                    document.getElementById("errorMsg1").style.display = "none";
+                    if(pMob!=""){
+                        var mobReg= /^[0-9]{10}$/;
+                        if(mobReg.test(pMob) == false){
+                            document.getElementById("errorMsg3").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg3").style.display = "none";
+                        }
+                    }   
+                    if(pEmail!=""){
+                        var emailReg= /^.+@.+\..+$/;
+                        if(emailReg.test(pEmail) == false){
+                            document.getElementById("errorMsg4").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg4").style.display = "none";
+                        }
+                    }
+                    
+                    if(pwd!="" && cPwd!="" && pwd!=cPwd){
+                        document.getElementById("errorMsg2").style.display = "block";
+                        document.getElementById("errorMsg5").style.display = "none";
+                        document.getElementById("errorMsg12").style.display = "none";
+                        return false;
+                    }
+                    else{
+                        document.getElementById("errorMsg2").style.display = "none";
+                        // var pwdReg = /^.{6,}$/;
+                        var pwdReg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
+                        if(pwdReg.test(pwd) == false){
+                            document.getElementById("errorMsg5").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg5").style.display = "none";
+                        }
+                    }
+                    var personalData = {"firstName":fName,"lastName":lName,"personalEmail":pEmail,"personalPassword":pwd,"personalMobileNumber":pMob};
+                    sendData(personalData,"/personalRegHome");
+                }
+            }
+            function organizationFormValidate(){
+                var orgName = document.getElementById("organizationName").value;
+                var orgUrl = document.getElementById("organizationUrl").value;
+                var orgMob = document.getElementById("organizationMob").value;
+                var orgEmail = document.getElementById("organizationEmail").value;
+                var orgPwd = document.getElementById("organizationPassword").value;
+                var orgCPwd = document.getElementById("confirmOrganizationPassword").value;
+
+                if(orgName=="" || orgUrl=="" || orgMob=="" || orgEmail=="" || orgPwd=="" || orgCPwd==""){
+                    document.getElementById("errorMsg6").style.display = "block";
+                    document.getElementById("errorMsg7").style.display = "none";
+                    document.getElementById("errorMsg8").style.display = "none";
+                    document.getElementById("errorMsg9").style.display = "none";
+                    document.getElementById("errorMsg10").style.display = "none";
+                    document.getElementById("errorMsg11").style.display = "none";
+                    document.getElementById("errorMsg12").style.display = "none";
+                    return false;
+                }
+                else{
+                    document.getElementById("errorMsg6").style.display = "none";
+                    if(orgMob!=""){
+                        var orgMobReg= /^[0-9]{10}$/;
+                        if(orgMobReg.test(orgMob) == false){
+                            document.getElementById("errorMsg10").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg10").style.display = "none";
+                        }
+                    }   
+                    if(orgEmail!=""){
+                        var orgEmailReg= /^.+@.+\..+$/;
+                        if(orgEmailReg.test(orgEmail) == false){
+                            document.getElementById("errorMsg9").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg9").style.display = "none";
+                        }
+                    }
+                    if(orgUrl!=""){
+                        var orgUrlReg= /^.+\..+$/;
+                        if(orgUrlReg.test(orgUrl) == false){
+                            document.getElementById("errorMsg11").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg11").style.display = "none";
+                        }
+                    }
+                    
+                    if(orgPwd!="" && orgCPwd!="" && orgPwd!=orgCPwd){
+                        document.getElementById("errorMsg7").style.display = "block";
+                        document.getElementById("errorMsg8").style.display = "none";
+                        document.getElementById("errorMsg12").style.display = "none";
+                        return false;
+                    }
+                    else{
+                        document.getElementById("errorMsg7").style.display = "none";
+                        // var orgPwdReg = /^.{6,}$/;
+                        var orgPwdReg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/;
+                        if(orgPwdReg.test(orgPwd) == false){
+                            document.getElementById("errorMsg8").style.display = "block";
+                            document.getElementById("errorMsg12").style.display = "none";
+                            return false;
+                        }
+                        else{
+                            document.getElementById("errorMsg8").style.display = "none";
+                        }
+                    }
+                    var orgData = {"organizationName" : orgName,"organizationUrl": orgUrl,"organizationEmail": orgEmail,"organizationPassword": orgPwd,"organizationMob": orgMob};
+                    sendData(orgData,"/organizationRegHome");
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <section class="Form my-4 mx-5">
+            <div class="container">
+                <div class="row no-gutters bg-light">
+                    <div class="col-lg-5">
+                        <img src="images/coverImg2.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-7 px-5 pt-5">
+                        <h1 class="display-3 py-2" id="login">Ecommerce</h1>
+                        <h4>Register Here</h4>
+             
+                        
+                        <!-- Personal Form -->
+                        <form  id="personalProfileForm" method="post" action="/regPersonal">
+                            <div class="form-row">
+                            </div>
+                            <div class="contrainer">
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" placeholder="First Name" id="firstName" name="firstName" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" placeholder="Last Name" id="lastName" name="lastName" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="tel" placeholder="Mobile Number" id="personalMobileNumber" name="personalMobileNumber" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <p id="errorMsg3" class="text-danger">Please enter valid Mobile Number.</p>                                   
+                                    </div> 
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="text" placeholder="Email Address" id="personalEmail" name="personalEmail" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <p id="errorMsg4" class="text-danger">Please enter valid email.</p>                                   
+                                    </div> 
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="password" placeholder="Password" id="personalPassword" name="personalPassword" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="password" placeholder="Confirm Password" id="confirmPersonalPassword" name="confirmPersonalPassword" class="form-control my-2 p-3">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <p id="errorMsg1" class="text-danger">Please enter all the details.</p>                                   
+                                    </div> 
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <p id="errorMsg2" class="text-danger">Password do not match.</p>                                   
+                                    </div> 
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <p id="errorMsg5" class="text-danger">Password must be 6 or more characters and include at least one lowercase letter, one uppercase letter, one digit and a special character.</p>                                   
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="button" value="Register" onclick="personalFormValidate()" class="btn1 mt-3 mb-5">
+                                </div>
+                            </div>
+                        </form>
+
+                     
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <p id="errorMsg12" class="text-danger"></p>                                   
+                            </div> 
+                        </div>
+                        <p>Already have an account? <a href="login.html"> Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

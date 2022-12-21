@@ -1,0 +1,79 @@
+<html>
+
+<head>
+  <style>
+    #qrcode {
+      width: 250px;
+      height: 160px;
+      margin-top: 15px;
+      text-align: center;
+      margin: 0 auto; 
+    }
+
+    #id {
+      font-size: 35px;
+      align-items: center;
+      text-align: center;
+    }
+
+    body {
+      background-color: antiquewhite;
+    }
+
+    #inner {
+      background-color: white;
+      width: 30%;
+   
+      align-self: center;
+      height: 400px;
+      margin: 0 auto; 
+
+    }
+    #scan {
+      padding-top: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h2 id="id">Online Payments</h2>
+  <div id="inner">
+    <h2 id="scan">Scan below QR Code to Pay Online</h2>
+    <div id="qrcode"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+
+
+</body>
+<Script>
+
+
+
+
+
+const generateURL = ({ amount, name, upi }) => {
+    return `upi://pay?pa=${upi}&pn=${name}&am=${amount}&cu=INR`;
+  };
+
+  function createQRCode() {
+    let name = "Vamsi Ecommerce";
+    let amount = sessionStorage.getItem("total");
+    let upi = "vamsi7205@ybl";
+    const url = generateURL({ amount, name, upi });
+    var qrcode = new QRCode("qrcode", {
+      text: "Order",
+      width: 228,
+      height: 228,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    qrcode.makeCode(url);
+  }
+  createQRCode();
+
+
+</Script>
+
+</html>

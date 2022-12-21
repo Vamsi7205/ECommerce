@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        #image {
+            min-height: 250px;
+            min-width: 250px;
+            max-width: 250px;
+            max-width: 250px;
+            border-top-left-radius: 10%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            height: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        .row {
+            padding-bottom: 15px;
+        }
+
+        .left {
+            width: 25%;
+            background-color: white;
+           border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        .right {
+            width: 75%;
+            background-color: rgb(255, 255, 255);
+            padding-top: 40px;
+            font-size: 20px;
+            padding-left: 50px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        #outer {
+            padding-left: 0px;
+            background-color: rgb(216, 216, 211);
+            padding-right: 0px;
+            overflow: hidden;
+            padding-top: 0px;
+        }
+
+        #items {
+            padding-left: 340px;
+            background-color: rgb(232, 228, 228);
+            padding-right: 40px;
+        }
+
+        #filters {
+            padding-top: 10px;
+            background-color: rgb(255, 253, 253);
+
+        }
+
+        #price {
+            font-size: 20px;
+            
+        }
+        #discount {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+
+        #column1 {
+            width: 20%;
+            float: left;
+            height: 1000px;
+        
+            background-color: rgb(255, 253, 253);
+            padding-top: 20px;
+        }
+
+        #column2 {
+            width: 80%;
+            padding: 0 10px 0 0;
+            float: right;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 700px;
+           
+            overflow-y: auto;
+
+        }
+
+        #filters {
+            padding-left: 30px;
+        }
+        #filterHeading {
+            font-size: 30px;
+            color: rgba(14, 70, 112, 0.908);
+        }
+
+        #woodstyle {
+          font-size: 40px;
+          font-style: oblique;
+          font-weight: bold;
+        }
+
+        body {
+            overflow: hidden;
+            background-color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+
+
+
+        <div id="header">
+            <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+              <a class="navbar-brand" href="#">ECommerce</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        
+        
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                  <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                    
+                  </form>
+                </ul>
+              </div>
+        
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="furniture.html">Furniture</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="electronics.html">Electonics</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="offers.html">Offers</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+
+    <div id="outer">
+        <div id="column1">
+            <div id ="filters">
+                <!--
+            <h2 id="filters">Sort By Price</h2>
+            <label for="ascending">
+                <input type="radio" id="ascending" name="priceSort" onclick="sortAscending()" />
+                Low to High
+            </label>
+            <label for="descending">
+                <input type="radio" id="descending" name="priceSort" onclick="sortDescending()" />
+                High to Low
+            </label>
+        -->
+                <h2 id = "filterHeading">Filter By Price</h2>
+                <label for="ascending">
+                    <input type="radio" id="filter1" name="filter" onclick="applyFilter('wood',0,5000)" />
+                    Less than Rs 5000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter2" name="filter" onclick="applyFilter('wood',5000,10000)" />
+                    RS 5000 to Rs 10000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter3" name="filter" onclick="applyFilter('wood',10000,50000)" />
+                    RS 10000 to Rs 50000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter4" name="filter" onclick="applyFilter('wood',50000,100000)" />
+                    RS 50000 to Rs 100000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter5" name="filter" onclick="applyFilter('wood',100000,78787878)" />
+                    greater than Rs 100000
+                </label> </br>
+            </div>
+        </div>
+        <div id="column2">
+            <div>
+                <div id="watches"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+            function applyFilter(item, low, high) {
+              
+                let items = addItems(getItems(), low, high);
+            document.getElementById('watches').innerHTML = items;
+        }
+        function addItems(items, low, high) {
+            var final = "";
+            for (item of items) {
+                let price = (1-(0.01*item.discount))*item.price;
+                let discountedPrice =  (Math.round(price * 100) / 100).toFixed(2);
+                if (discountedPrice >= low && discountedPrice <= high && item.discount>=10) {
+                    let temp = `<div class="row">
+                                    <a href=${item.link}>
+                                    <div class="column left" style="background-color:"white";">
+                                    <img  id="image" src=${item.Image}></a>
+                                    </div>
+                                    <div class="column right" >
+                                    <p id= >${item.desc}</p>
+                                    <p id= "price">RS <del>${item.price}</del></p>
+                                    <p id= "discount">-${item.discount}% RS  ${discountedPrice}</p>
+                                    </div>
+                                </div>`
+
+                    final += temp;
+                }
+            }
+            if (final == "")
+                final = `<h2>No Items on this category</h2>`;
+            return final;
+        }
+
+
+        function getItems () {    
+        var arr =getWatches();
+        let wood = getWood();
+        let laptops = getLaptops();
+        arr=[...wood,...laptops];
+       return arr;
+        }
+        function getWood() {
+      let arr = [{
+        link: "https://www.amazon.in/Sleep-Company-Orthopedic-Adjustable-Adjustments/dp/B09VYZMY5M/ref=sr_1_3_sspa?keywords=furniture&qid=1669998290&qu=eyJxc2MiOiI5LjMzIiwicXNhIjoiOC42MyIsInFzcCI6IjUuNjYifQ%3D%3D&sprefix=furnit%2Caps%2C401&sr=8-3-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+        Image: "https://m.media-amazon.com/images/I/71ULkEIWlQL._SX679_.jpg",
+        desc1:"The Sleep Company SmartGRID ARISTO Chair",
+        desc: "The Sleep Company SmartGRID ARISTO Chair for Office & Home, SmartGRID Technology with Adjustable Lumbar support for ergonomic sitting posture | Elegant & Premium Tiffany Blue Mesh design| Multiple Adjustments Mechanism | Made in India | (White & Tiffany Blue)",
+       
+        price:"14999",
+        discount:"10"
+      },
+      {
+        link:"https://www.amazon.in/Tree-House-Nesting-Nightstand-Furniture/dp/B0BH4W3R4P/ref=sr_1_8?keywords=furniture&qid=1669998290&qu=eyJxc2MiOiI5LjMzIiwicXNhIjoiOC42MyIsInFzcCI6IjUuNjYifQ%3D%3D&sprefix=furnit%2Caps%2C401&sr=8-8",
+        Image:"https://m.media-amazon.com/images/I/61Cp0uptQwL._SX679_.jpg",
+        desc1:"House Nesting Triangle End Coffee Table",
+        desc:"Tree House Nesting Triangle End Coffee Tables Nightstand Modern Furniture for Home Office Living Room Nest White Table",
+        
+        price:"1599",
+        discount:"9"
+      },
+      {
+        link:"https://www.amazon.in/Aprodz-Sheesham-Avavia-Seater-Furniture/dp/B081T8XRJM/ref=sr_1_7?crid=38972CNNOFZCV&keywords=dining+table&qid=1669998599&qu=eyJxc2MiOiI4LjUxIiwicXNhIjoiOC44NSIsInFzcCI6IjUuMjAifQ%3D%3D&sprefix=di%2Caps%2C530&sr=8-7",
+        Image:"https://m.media-amazon.com/images/I/61260yYzG9L._SX522_.jpg",
+        desc1:"6 Seater Dining Table Set with Bench",
+        desc:"Aprodz Sheesham Wood Avavia 6 Seater Dining Table Set with Bench for Home | Dining Furniture | Brown Finish",
+        price:"30999",
+        discount:"35"
+      },
+      {
+        link:"https://www.amazon.in/Amazon-Brand-Solimo-DR-DS-004-1-Seater/dp/B089BG6SJD/ref=sr_1_16?crid=38972CNNOFZCV&keywords=dining+table&qid=1669998599&qu=eyJxc2MiOiI4LjUxIiwicXNhIjoiOC44NSIsInFzcCI6IjUuMjAifQ%3D%3D&sprefix=di%2Caps%2C530&sr=8-16",
+        Image:"https://m.media-amazon.com/images/I/81R0kf1DUWS._SX679_.jpg",
+        desc1:"Solimo Carina Engineered Wood & Metal 4 Seater Dining Set",
+        desc:"Amazon Brand - Solimo Carina Engineered Wood & Metal 4 Seater Dining Set",
+        price:"13000",
+        discount:"25"
+      },
+      {
+        link:"https://www.amazon.in/Cello-Novelty-Compact-Cupboard-Brown/dp/B01BHPPSZI/ref=sr_1_11?crid=L4AUO54OIVCA&keywords=cupboard&qid=1669998771&qu=eyJxc2MiOiI3LjM3IiwicXNhIjoiNy41OCIsInFzcCI6IjUuNTgifQ%3D%3D&sprefix=cupboar%2Caps%2C603&sr=8-11",
+        Image:"https://m.media-amazon.com/images/I/51rtfz8X1CL._SX522_.jpg",
+        desc1:"Plastic 2 Door Cupboard with Shelf(Brown)",
+        desc:"Cello Novelty Compact Plastic 2 Door Cupboard with Shelf(Brown)",
+        price:"3000",
+        discount:"9"
+      },
+      {
+        link:"https://www.amazon.in/Amazon-Brand-Cabelli-Engineered-Wardrobe/dp/B09ZV6PRHZ/ref=sr_1_4_sspa?crid=L4AUO54OIVCA&keywords=cupboard&qid=1669998771&qu=eyJxc2MiOiI3LjM3IiwicXNhIjoiNy41OCIsInFzcCI6IjUuNTgifQ%3D%3D&sprefix=cupboar%2Caps%2C603&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+        Image:"https://m.media-amazon.com/images/I/712HScDbtyL._SX522_.jpg",
+        desc1:"Solimo Cabelli Engineered Wood 3 Door Wardrobe",
+        desc:"Amazon Brand - Solimo Cabelli Engineered Wood 3 Door Wardrobe with 2 Drawers and Mirror (Walnut Finish)",
+        price:"15000",
+        discount:"44"
+      }
+      ];
+      return arr;
+    }
+
+        function getWatches() {
+            let arr = [{
+                link: "https://www.amazon.in/Apple-Watch-GPS-Cellular-45mm/dp/B09HHFR9XM/ref=sr_1_1_sspa?crid=3KXLHS7CCCW9R&keywords=apple+watches&qid=1669969605&qu=eyJxc2MiOiI2LjE3IiwicXNhIjoiNS44MiIsInFzcCI6IjMuMzkifQ%3D%3D&sprefix=applewatches%2Caps%2C387&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+                Image: "apples7.jpg",
+                desc: "Apple Watch Series 7 (GPS + Cellular, 45mm) - Midnight Aluminium Case with Midnight Sport Band - Regular",
+                price: "20000",
+                discount:"0"
+            },
+            {
+                link: "https://www.amazon.in/Apple-Watch-GPS-Cellular-40mm/dp/B09G9717T5/ref=sr_1_3?crid=3KXLHS7CCCW9R&keywords=apple+watches&qid=1669969605&qu=eyJxc2MiOiI2LjE3IiwicXNhIjoiNS44MiIsInFzcCI6IjMuMzkifQ%3D%3D&sprefix=applewatches%2Caps%2C387&sr=8-3",
+                Image: "applese.jpg",
+                desc: "Apple Watch SE (GPS + Cellular, 40mm) - Space Grey Aluminium Case with Midnight Sport Band - Regular",
+                price: "2000",
+                discount:"9"
+            },
+            {
+                link: "https://www.amazon.in/Apple-Cellular-Titanium-Orange-Alpine/dp/B0BDKGNMJQ/ref=sr_1_13?crid=3KXLHS7CCCW9R&keywords=apple+watches&qid=1669969605&qu=eyJxc2MiOiI2LjE3IiwicXNhIjoiNS44MiIsInFzcCI6IjMuMzkifQ%3D%3D&sprefix=applewatches%2Caps%2C387&sr=8-13",
+                Image: "appleultra.jpg",
+                desc: "Apple Watch Ultra GPS + Cellular, 49mm Titanium Case with Orange Alpine Loop - Small",
+                price: "300",
+                discount:"40"
+            },
+            {
+                link: "https://www.amazon.in/Fossil-Smartwatch-Snapdragon-Smartphone-Notifications/dp/B09DGS966L/ref=sr_1_5?keywords=fossil+smart+watch+for+men&qid=1669973500&qu=eyJxc2MiOiI0Ljk2IiwicXNhIjoiNS4xNiIsInFzcCI6IjQuMjIifQ%3D%3D&sprefix=fossil+smart%2Caps%2C319&sr=8-5",
+                Image: "fossilgen6.jpg",
+                desc: "Fossil Gen 6 Smartwatch with AMOLED Screen, Snapdragon 4100+ Wear Platform, Wear OS by Google, Google Assistant, SpO2, Wellness Features and Smartphone Notifications",
+                price: "78000",
+                discount:"18"
+            },
+            {
+                link: "https://www.amazon.in/Galaxy-Watch4-Classic-Bluetooth-4-2cm/dp/B09C6DNF6H/ref=sr_1_4?crid=1FYPDGBG85C45&keywords=samsung+smart+watch+for+men&qid=1669973549&qu=eyJxc2MiOiI2LjI2IiwicXNhIjoiNS45NiIsInFzcCI6IjQuOTMifQ%3D%3D&sprefix=samsung+smart+watch+for+men%2Caps%2C260&sr=8-4",
+                Image: "samsung.jpg",
+                desc: "Samsung Galaxy Watch4 Classic Bluetooth(4.2 cm, Black, Compatible with Android Only)",
+                price: "7855",
+                discount:"50"
+            },
+            {
+                link: "https://www.amazon.in/boAt-Wave-Call-Dedicated-Multi-Sport/dp/B0B5B6PQCT/ref=sr_1_2_sspa?keywords=boat%2Bsmart%2Bwatch%2Bfor%2Bmen&qid=1669973896&qu=eyJxc2MiOiI1LjQwIiwicXNhIjoiNS4wMSIsInFzcCI6IjQuMzYifQ%3D%3D&sprefix=boat%2Caps%2C277&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1",
+                Image: "boat.jpg",
+                desc: "boAt Wave Call Smart Watch, Smart Talk with Advanced Dedicated Bluetooth Calling Chip, 1.69” HD Display with 550 NITS & 70% Color Gamut, 150+ Watch Faces, Multi-Sport Modes,HR,SpO2, IP68(Active Black)",
+                price: "2000",
+                discount:"8"
+            },
+
+            ];
+            return arr;
+        }
+
+        function getLaptops() {
+            let arr = [{
+                link: "https://www.amazon.in/Microsoft-Surface-Laptop-Studio-Touchscreen/dp/B07XB2Y7ZD/ref=sr_1_2_sspa?crid=4FEI7XL81RDY&keywords=laptop&qid=1669974074&qu=eyJxc2MiOiI5LjIyIiwicXNhIjoiOS40OSIsInFzcCI6IjYuODUifQ%3D%3D&sprefix=laptop%2Caps%2C361&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+                Image: "microsoftsurface.jpg",
+                desc: "Microsoft Surface Laptop Studio",
+            },
+            {
+                link: "https://www.amazon.in/ASUS-15-6-inch-Integrated-Transparent-X515MA-BR011W/dp/B09SGGB687/ref=sr_1_5?crid=4FEI7XL81RDY&keywords=laptop&qid=1669974074&qu=eyJxc2MiOiI5LjIyIiwicXNhIjoiOS40OSIsInFzcCI6IjYuODUifQ%3D%3D&sprefix=laptop%2Caps%2C361&sr=8-5",
+                Image: "asus.jpg",
+                desc: "ASUS VivoBook 15",
+            },
+            {
+                link: "https://www.amazon.in/HP-Pavilion-Multitouch-enabled-Micro-Edge-14-ek0086TU/dp/B0B58SWPNS/ref=sr_1_1_sspa?crid=1YCZZ7IFRUCPX&keywords=hp+laptop&qid=1669974845&qu=eyJxc2MiOiI2LjgxIiwicXNhIjoiNi43NSIsInFzcCI6IjUuMjYifQ%3D%3D&sprefix=hp+laptop%2Caps%2C333&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+                Image: "hp.jpg",
+                desc: "HP Pavilion Laptop",
+            },
+            {
+                link: "https://www.amazon.in/Apple-MacBook-Chip-13-inch-256GB/dp/B08N5VSQNG/ref=sr_1_2_sspa?keywords=macbook+pro&qid=1669974916&qu=eyJxc2MiOiI1LjA3IiwicXNhIjoiNC4zMSIsInFzcCI6IjMuNTcifQ%3D%3D&sprefix=macbo%2Caps%2C392&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1",
+                Image: "macbookpro.jpg",
+                desc: "MacBook Pro Laptop",
+            },
+            {
+                link: "https://www.amazon.in/dp/B0BDM69W6P/ref=syn_sd_onsite_desktop_209?ie=UTF8&psc=1&pd_rd_plhdr=t",
+                Image: "lenovo.jpg",
+                desc: "Lenovo Laptop",
+            }
+            ]
+            return arr;
+        }
+        let items = addItems(getItems(), 0, 10000000);
+        document.getElementById('watches').innerHTML = items;
+
+    </script>
+
+</body>
+
+</html>

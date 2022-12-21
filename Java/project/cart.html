@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        #image {
+            min-height: 200px;
+            min-width: 200px;
+            max-width: 200px;
+            max-width: 200px;
+            border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+
+            /* Should be removed. Only for demonstration */
+        }
+
+        .row {
+            padding-right: 5%;
+            padding-bottom: 15px;
+            border-top-right-radius: 5%;
+            border-bottom-right-radius: 5%;
+        }
+
+        .left {
+            width: 25%;
+            background-color: white;
+            border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        .right {
+            width: 75%;
+            background-color: rgb(255, 255, 255);
+            padding-top: 40px;
+            font-size: 20px;
+            padding-left: 50px;
+            border-top-right-radius: 5%;
+            border-bottom-right-radius: 5%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        #outer {
+            padding-left: 0px;
+            background-color: rgb(238, 237, 233);
+            padding-right: 0px;
+            overflow: auto;
+            padding-top: 0px;
+        }
+
+        #items {
+            padding-left: 340px;
+            background-color: rgb(232, 228, 228);
+            padding-right: 40px;
+        }
+        #discount {
+            font-size: 23px;
+            color: red;
+          ;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        #finalPrice {
+            display: inline-block;
+            font-size: 23px;
+            font-weight: bold;
+           
+        }
+
+        #price {
+            font-size: 20px;
+
+        }
+
+        #column1 {
+            width: 70%;
+            padding: 0 10px 0 0;
+            float: left;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 700px;
+            padding-left: 50px;
+            overflow-y: auto;
+        }
+
+        #column2 {
+            width: 30%;
+            padding: 0 10px 0 0;
+            float: right;
+            padding-right: 1%;
+            padding-left: 1%;
+            height: 700px;
+            background-color: rgb(238, 237, 233);
+
+        }
+
+        #filters {
+            padding-left: 0px;
+        }
+
+        #filterHeading {
+            font-size: 30px;
+            color: rgba(14, 70, 112, 0.908);
+        }
+
+
+        body {
+            overflow: auto;
+
+        }
+
+        #total {
+
+            font-size: 35px;
+            font-style: oblique;
+            font-weight: bold;
+
+        }
+
+        #button {
+            font-size: 25px;
+            font-weight: 500;
+            color: orange;
+        }
+
+        #removeallbutton {
+            padding-left: 80%;
+            padding-top: 15%;
+            font-size: 25px;
+            font-weight: 500;
+            color: rgb(255, 111, 0);
+        }
+
+        #cartImage {
+            height: 40px;
+            width: 40px;
+            padding-left: 10px;
+        }
+
+        #proceed {
+            font-size: 30px;
+            font-weight: 500;
+
+
+            background-color: #000;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: block;
+            color: #fff;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            border: 0;
+            cursor: pointer;
+            outline: 0;
+
+        }
+
+        #checkout {
+            padding-top: 0px;
+        }
+
+
+        #shippingAddress {
+            height: 550px;
+            background-color: white;
+            border-radius: 4%;
+        }
+
+        @import url("https://rsms.me/inter/inter.css");
+
+        :root {
+            --color-gray: #737888;
+            --color-lighter-gray: #e3e5ed;
+            --color-light-gray: #f7f7fa;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        html {
+            font-family: "Inter", sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        @supports (font-variation-settings: normal) {
+            html {
+                font-family: "Inter var", sans-serif;
+            }
+        }
+
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--color-gray);
+        }
+
+        hr {
+            height: 1px;
+            width: 100%;
+            background-color: var(--color-light-gray);
+            border: 0;
+            margin: 2rem 0;
+        }
+
+        .container {
+            font-size: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            color: black;
+            height: 200px;
+        }
+
+        .form {
+            display: grid;
+            grid-gap: 1rem;
+        }
+
+        .field {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-lighter-gray);
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .field__label {
+            color: var(--color-gray);
+            font-size: 15px;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+            color: black;
+        }
+
+        .field__input {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            outline: 0;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+        }
+
+        .field:focus-within {
+            border-color: #000;
+        }
+
+        .fields {
+            display: grid;
+            grid-gap: 1rem;
+        }
+
+        .fields--2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .fields--3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .button {
+            background-color: #000;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: block;
+            color: #fff;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            border: 0;
+            cursor: pointer;
+            outline: 0;
+        }
+
+        .button:focus-visible {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="header">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ECommerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                            id="search">
+                        <button class="btn btn-unique btn-rounded btn-sm my-0 waves-effect waves-light"
+                            type="submit">Search</button>
+                    </form>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electronics.html">Electonics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="cart.html">Cart</a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div id="outer">
+        <div id="column1">
+            <h2 id="cartHeading"></h2>
+            <a id="removeallbutton" href="cart.html" onclick="removeAll()">Remove All</a>
+            <div>
+                <div id="cart"></div>
+            </div>
+        </div>
+
+        <div id="column2">
+            <h2 id="cartHeading"></h2>
+            <div id="shippingAddress">
+                <div class="container">
+                    <h1>Shipping</h1>
+                    <p style="color: black;">Please enter your shipping details.</p>
+                    <hr />
+                    <div class="form">
+                        <div class="fields fields--2">
+                            <label class="field">
+                                <span class="field__label" for="firstname">First name</span>
+                                <input class="field__input" type="text" id="firstname" value="" />
+                            </label>
+                            <label class="field">
+                                <span class="field__label" for="lastname">Last name</span>
+                                <input class="field__input" type="text" id="lastname" value="" />
+                            </label>
+                        </div>
+                        <label class="field">
+                            <span class="field__label" for="address">Address</span>
+                            <input class="field__input" type="text" id="address" />
+                        </label>
+                        <label class="field">
+                            <span class="field__label" for="country">Country</span>
+                            <select class="field__input" id="country">
+                                <option value=""></option>
+                                <option value="india">India</option>
+                            </select>
+                        </label>
+                        <div class="fields fields--3">
+                            <label class="field">
+                                <span class="field__label" for="zipcode">Pin code</span>
+                                <input class="field__input" type="text" id="zipcode" />
+                            </label>
+                            <label class="field">
+                                <span class="field__label" for="city">City</span>
+                                <input class="field__input" type="text" id="city" />
+                            </label>
+                            <label class="field">
+                                <span class="field__label" for="state">State</span>
+                                <select class="field__input" id="state">
+                                    <option value=""></option>
+
+                                    <option value="AP">Andhra Pradesh</option>
+                                    <option value="TN">Tamil Nadu</option>
+                                    <option value="karnataka">Karnataka</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div id="checkout">
+                <div id="total"></div>
+                <button id="proceed" onclick="proceedForPayment()">Proceed for Payment</button>
+            </div>
+        </div>
+      
+        </div>
+        <div id="footer"></div>
+
+
+        <script>
+            $("#footer").load("footer.html"); window.onbeforeunload = function () { addBuyItemToCart(); }</script>
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
+
+
+</body>
+
+</html>

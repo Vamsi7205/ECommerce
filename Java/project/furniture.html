@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        #image {
+           width: 300px;
+           height: 250px;
+            border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            height: 250px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        .row {
+            padding-right: 1%;
+            padding-bottom: 15px;
+            border-top-right-radius: 55%;
+            border-bottom-right-radius: 5%;
+        }
+
+        .left {
+            width: 25%;
+            background-color: white;
+            border-top-left-radius: 10%;
+            border-bottom-left-radius: 10%;
+        }
+
+        .right {
+            width: 75%;
+            background-color: rgb(255, 255, 255);
+            padding-top: 40px;
+            font-size: 20px;
+            padding-left: 50px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        #header {
+      width: 100%;
+      z-index:100;
+      position: fixed;
+    }
+
+        #outer {
+            padding-left: 0px;
+            background-color: rgb(235, 235, 233);
+            padding-right: 0px;
+            overflow: hidden;
+            padding-top: 3.5%;
+           
+        }
+
+        #items {
+            padding-left: 340px;
+
+            background-color: rgb(232, 228, 228);
+            padding-right: 40px;
+        }
+
+        #filters {
+            padding-top: 10px;
+            background-color: rgb(255, 253, 253);
+
+        }
+        #desc{
+            font-size: 20px;
+            font-style: oblique;
+        }
+
+        #discount {
+            font-size: 23px;
+            color: red;
+          ;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        #finalPrice {
+            display: inline-block;
+            font-size: 23px;
+            font-weight: bold;
+           
+        }
+
+        #price {
+            font-size: 20px;
+
+        }
+        #column1 {
+            width: 20%;
+            float: left;
+            height: 700px;
+            background-color: rgb(255, 253, 253);
+            padding-top: 20px;
+        }
+
+        #column2 {
+            width: 80%;
+            padding: 0 10px 0 0;
+            float: right;
+            overflow-x: hidden;
+            height: 700px;
+            padding-left: 50px;
+
+        }
+
+        #filters {
+            padding-left: 30px;
+        }
+
+        #filterHeading {
+            font-size: 30px;
+            color: rgba(14, 70, 112, 0.908);
+        }
+
+        #woodstyle {
+            font-size: 40px;
+            font-style: oblique;
+            font-weight: bold;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: white;
+        }
+
+        #cart {
+            height: 30px;
+            width: 40px;
+            padding-left: 10px;
+        }
+        #cartImage {
+            height: 40px;
+            width: 40px;
+            padding-left: 10px;
+        }
+        #cartStyle{
+           border: none;
+         
+           background-color: rgb(236, 216, 119);
+           color: black;
+           font-weight: 600;
+           font-size: 20px;
+        
+            
+        }
+        
+/* Green */
+.buy {
+  border-color: #04AA6D;
+  color: green;
+
+
+           float: middle;
+           font-weight: 600;
+           font-size: 20px;
+}
+
+.buy:hover {
+  background-color: #04AA6D;
+  color: white;
+
+           float: middle;
+           font-weight: 600;
+           font-size: 20px;
+}
+   
+.cart {
+  border-color: #2196F3;
+  color: dodgerblue;
+         font-weight: 600;
+         font-size: 20px;
+}
+
+.cart:hover {
+  background: #2196F3;
+  color: white;
+
+ 
+}
+        #buyStyle{
+           border: none;
+           float: middle;
+           background-color: rgb(209, 236, 119);
+           color: blue;
+           font-weight: 600;
+           font-size: 20px;
+         
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+    <div id="header">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ECommerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                            id="search">
+
+                    </form>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electronics.html">Electonics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">Cart</a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" onclick="logout()">Logout</a>
+                      </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="outer">
+        <div id="column1">
+            <div id="filters">
+                <!--
+            <h2 id="filters">Sort By Price</h2>
+            <label for="ascending">
+                <input type="radio" id="ascending" name="priceSort" onclick="sortAscending()" />
+                Low to High
+            </label>
+            <label for="descending">
+                <input type="radio" id="descending" name="priceSort" onclick="sortDescending()" />
+                High to Low
+            </label>
+        -->
+                <h2 id="filterHeading">Filter By Price</h2>
+                <label for="ascending">
+                    <input type="radio" id="filter1" name="filter"  value="" onclick="applyFilter('wood',0,5000)" />
+                    Less than Rs 5000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter2" name="filter" onclick="applyFilter('wood',5000,10000)" />
+                    RS 5000 to Rs 10000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter3" name="filter" onclick="applyFilter('wood',10000,50000)" />
+                    RS 10000 to Rs 50000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter4" name="filter" onclick="applyFilter('wood',50000,100000)" />
+                    RS 50000 to Rs 100000
+                </label> </br>
+                <label for="ascending">
+                    <input type="radio" id="filter5" name="filter" onclick="applyFilter('wood',100000,78787878)" />
+                    greater than Rs 100000
+                </label> </br>
+            </div>
+        </div>
+        <div id="column2">
+            <div>
+                <div id="watches"></div>
+                <div id="laptops"></div>
+                <div id="wood"></div>
+                <div id="ac"></div>
+            </div>
+        </div>
+        
+    </div>
+  
+    
+
+    <script>
+         $("#footer").load("footer.html"); 
+        function sortDescending() {
+            var items = getWatches();
+            items.sort(function (a, b) { return b.price - a.price });
+            document.getElementById('watches').innerHTML = addItems(items, 0, 1000000);
+        }
+        function sortAscending() {
+            var items = getWatches();
+            items.sort(function (a, b) { return a.price - b.price });
+            document.getElementById('watches').innerHTML = addItems(items, 0, 1000000);
+        }
+
+        function applyFilter(item, low, high) {
+            let arr = [getWood(), getWatches(), getLaptops(), getAirConditioners()];
+            let wood = addItems(arr[0], 0,low, high);
+            let watches = addItems(arr[1],1, low, high);
+            let laptops = addItems(arr[2],2,low,high);
+            let ac = addItems(arr[3], 3,low, high);
+          var final =  wood+laptops+watches+ac;
+            if (final == "")
+                final = `<h2>No Items on this category</h2>`;
+           
+            document.getElementById('wood').innerHTML = final;
+        }
+
+        function addItems(items,itemCategoryIndex, low, high) {
+            var final = "";
+            for (itemINdex in items) {
+                item = items[itemINdex];
+                let price = (1 - (0.01 * item.discount)) * item.price;
+                let discountedPrice = (Math.round(price * 100) / 100).toFixed(2);
+                if (discountedPrice >= low && discountedPrice <= high) {
+                    let temp = `<div class="row" id ="${itemINdex}">
+                                    <a href="detailPage.html" onclick="setIndexForDetailPage(${itemCategoryIndex},${itemINdex})">
+                                    <div class="column left" style="background-color:"white";">
+                                    <img  id="image" src=${item.Image}></a>
+                                    </div>
+                                    <div class="column right" >
+                                    <p id="desc" >${item.desc}</p>
+                                    <p id= "price"><del>Rs ${item.price}</del></p>
+                            <p id= "discount">-${item.discount}% off</p> <p id ="finalPrice">RS ${discountedPrice} </p>
+                                    </div>
+                                </div>
+                                </div>`
+                    final += temp;
+                }
+            }
+            return final;
+        }
+        applyFilter('as',0,10000000);
+    </script>
+
+</body>
+
+</html>

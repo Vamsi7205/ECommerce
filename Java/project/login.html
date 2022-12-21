@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>ECommerce</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background-color: rgb(235, 235, 233);
+            }
+            .row{
+                background: white;
+                border-radius: 30px;
+                box-shadow: 12px 12px 22px grey;
+            }
+            img{
+                border-top-left-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
+            .btn1{
+                border:none;
+                outline: none;
+                height: 50px;
+                width: 100%;
+                background-color: black;
+                color: white;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            .btn1:hover{
+                background: white;
+                border: 1px solid;
+                color: black;
+            }
+            #errorMsg1,#errorMsg2,#errorMsg3,#errorMsg4{
+                display: none;
+            } 
+            #login {
+                font-weight: 600;
+                font-size: 60px;
+                font-style: oblique;
+            }
+            
+        </style>
+       
+        <script type="text/javascript">
+
+
+function validateForm(){
+  var email = document.getElementById("email").value;
+  var pwd = document.getElementById("password").value;
+//   sessionStorage.setItem("login","sucess");
+//   window.open("home.html");
+//   /*
+  
+  if(email=="" || pwd=="")
+  {
+      document.getElementById("errorMsg1").style.display = "block";
+      document.getElementById("errorMsg2").style.display = "none";
+      document.getElementById("errorMsg3").style.display = "none";
+      document.getElementById("errorMsg4").style.display = "none";
+
+  } else  if(email == "vamsi@gmail.com" && pwd == "Vamsi@123") {
+      alert("Login Sucessfull");
+      sessionStorage.setItem("login","sucess");
+      window.open("home.html", "_self");
+
+  } 
+
+else {
+    alert("Invalid Credentials")
+}
+  
+  /*else{
+      document.getElementById("errorMsg1").style.display = "none";
+      if(email!=""){
+          var emailReg = /^.+@.+\..+$/;
+          if(emailReg.test(email) == false){
+              document.getElementById("errorMsg2").style.display = "block";
+              document.getElementById("errorMsg4").style.display = "none";
+
+              return false;
+          }
+          else{
+              document.getElementById("errorMsg2").style.display = "none";
+          }
+      }
+      if(password!=""){
+          var pwdReg = /^.{6,}$/;
+          if(pwdReg.test(pwd) == false){
+              document.getElementById("errorMsg3").style.display = "block";
+              document.getElementById("errorMsg4").style.display = "none";
+
+              return false;
+          }
+          else{
+              document.getElementById("errorMsg3").style.display = "none";
+          }
+      }
+      sendData(email,pwd,profileType);
+  } */
+  
+}
+
+
+
+            function sendData(email,pwd,profileType){
+                var xhr = new XMLHttpRequest();
+                var data = {"email":email,"password":pwd, "profileType":profileType};
+                var url = "/loginHome"; 
+
+                xhr.open("POST",url,true);    
+                xhr.setRequestHeader("Content-Type","application/json");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == XMLHttpRequest.DONE) {
+                        console.log(this.responseText);
+                        if(this.responseText == "Success"){
+                            // window.location="http://localhost:1111/home";
+                            document.getElementById("loginForm").submit();
+                        }
+                        document.getElementById("errorMsg4").innerHTML = this.responseText;
+                        document.getElementById("errorMsg4").style.display = "block";
+                    }
+                };
+                xhr.send(JSON.stringify(data));
+            }
+
+          
+        </script>
+
+    </head>
+    <body>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <section class="Form my-4 mx-5">
+            <div class="container">
+                <div class="row no-gutters bg-light">
+                    <div class="col-lg-5">
+                        <img src="images/coverImg.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-7 px-5 pt-5">
+                        <h1 id="login" class="display-3 mb-5 py-3">Ecommerce</h1>
+                        <h4>Sign in</h4>
+                        <form id="loginForm" method="post" action="/login">
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="text" placeholder="Email Address" name="email" id="email" class="form-control my-2 p-3">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <p id="errorMsg2" class="text-danger">Please enter valid email.</p>                                   
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="password" placeholder="Password" name="password" id="password" class="form-control my-2 p-3">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <p id="errorMsg3" class="text-danger">Password must be 6 characters or more.</p>                                   
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <p id="errorMsg1" class="text-danger">Please enter all the details.</p>                                   
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <p id="errorMsg4" class="text-danger"></p>                                   
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <input type="button" value="Login" onclick="validateForm()" class="btn1 mt-3 mb-5">
+                                </div>
+                            </div>
+                            <a href="forgotpassword.html">Forgot password</a>
+                            <p>Don't have an account? <a href="register.html"> Register here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <style>
+    #div {
+      width: 300px;
+      display: inline-block;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+      background-color: white;
+      border-radius: 5%;
+      border-width: 25px;
+      overflow: hidden;
+    }
+
+
+    #watches {
+
+      overflow: auto;
+      white-space: nowrap;
+
+
+    }
+
+    #laptops {
+
+      overflow: auto;
+      white-space: nowrap;
+
+    }
+
+    #ac {
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    #outerDiv {
+      padding-left: 0px;
+      background-color: rgb(235, 235, 233);
+            padding-right: 0px;
+            padding-top: 0px;
+            overflow: hidden;
+
+    }
+
+    #image {
+      min-height: 250px;
+      min-width: 250px;
+      max-width: 250px;
+      max-width: 250px;
+      border-top-left-radius: 10%;
+    }
+
+    #para {
+
+      color: "green";
+      width: 250px;
+      text-align: center;
+      font-size: 18px;
+      font-style: oblique;
+
+    }
+
+    #price {
+      font-size: 22px;
+    }
+    #discount {
+            font-size: 20px;
+            color: red;
+            padding-left: 10%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        #finalPrice {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: bold;
+           
+        }
+
+    #section {
+      padding-left: 50px;
+      padding-top: 70px;
+    }
+
+    #header {
+      position: fixed;
+      width: 100%;
+      
+    }
+
+    #cartImage {
+      height: 40px;
+      width: 40px;
+      padding-left: 10px;
+    }
+
+
+
+    /* Green */
+    .buy {
+      border-color: #04AA6D;
+      color: green;
+    }
+
+    .buy:hover {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .cart {
+      border-color: #2196F3;
+      color: dodgerblue;
+    }
+
+    .cart:hover {
+      background: #2196F3;
+      color: white;
+    }
+
+    #cartStyle {
+      border: none;
+      background-color: rgb(236, 216, 119);
+      color: black;
+      font-weight: 600;
+      font-size: 20px;
+
+
+    }
+
+    #buyStyle {
+      border: none;
+      float: middle;
+      background-color: white;
+      color: blue;
+      font-weight: 600;
+      font-size: 20px;
+
+    } #body {
+      overflow: hidden;
+            background-color: white;
+         
+    }
+  </style>
+   
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div id="header">
+      <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ECommerce</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
+             
+            </form>
+          </ul>
+        </div>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="furniture.html">Furniture</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="electronics.html">Electonics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="offers.html">Offers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html">Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" onclick="logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+</head>
+
+<body>
+  
+  <script src="script.js"></script>
+  <div id="outerDiv">
+    <h1 id="section"> Watches </h1>
+    <div id="watches"></div>
+    <h1 id="section"> Laptops </h1>
+    <div id="laptops"></div>
+    <h1 id="section"> Air Conditioners </h1>
+    <div id="ac"></div>
+  </div>
+  <div id="footer"></div>
+
+
+  <script>
+      $("#footer").load("footer.html"); 
+
+    function addItems(items, index) {
+      var final = "";
+      for (itemINdex in items) {
+        let item = items[itemINdex];
+        let price = (1 - (0.01 * item.discount)) * item.price;
+        let discountedPrice = (Math.round(price * 100) / 100).toFixed(2);
+        let temp = ` <div id="div">
+          <a href="detailPage.html" onclick="setIndexForDetailPage(${index},${itemINdex})">
+                  <img id="image" src=${item.Image}></a>
+                  <p id="para">${item.desc1}   </p>
+                  <p id= "price">MRP: <del>Rs ${item.price}</del></p>
+                  <p id= "discount">-${item.discount}% off</p> <p id ="finalPrice">RS ${discountedPrice} </p>
+                  </div>`
+        final += temp;
+      }
+      return final;
+    }
+
+    function initialize() {
+      let arr = [getWood(), getWatches(), getLaptops(), getAirConditioners()];
+      let watches = addItems(arr[1], 1);
+      let laptops = addItems(arr[2], 2);
+      let ac = addItems(arr[3], 3);
+      document.getElementById("watches").innerHTML = watches;
+      document.getElementById("laptops").innerHTML = laptops;
+      document.getElementById("ac").innerHTML = ac;
+
+    }
+  
+  
+    initialize();
+  </script>
+
+</body>
+
+</html>

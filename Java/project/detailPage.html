@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        #image {
+            width: 350px;
+            height: 400px;
+            padding-left: 10%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            height: 250px;
+            /* Should be removed. Only for demonstration */
+        }
+
+
+
+        .left {
+            width: 25%;
+            background-color: white;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .right {
+            width: 75%;
+            background-color: rgb(255, 255, 255);
+            padding-top: 10px;
+            font-size: 20px;
+            padding-left: 50px;
+            height: 500px;
+        }
+
+
+        #outer {
+            overflow: auto;
+            padding-top: 1%;
+            padding-left: 2%;
+        }
+
+        #inner {
+            width: 98%;
+            overflow: hidden;
+            background-color: white;
+            border-radius: 2.5%;
+            padding-top: 0px;
+        }
+
+        #items {
+            padding-left: 340px;
+            background-color: rgb(232, 228, 228);
+            padding-right: 40px;
+        }
+
+        #filters {
+            padding-top: 10px;
+            background-color: rgb(255, 253, 253);
+
+        }
+
+        #desc {
+            font-size: 28px;
+            font-style: oblique;
+            font-weight: 400;
+        }
+
+        #price {
+
+            padding-left: 10%;
+            font-size: 20px;
+
+        }
+
+        #discount {
+            font-size: 23px;
+            color: red;
+            padding-left: 10%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        #finalPrice {
+            display: inline-block;
+            font-size: 23px;
+            font-weight: bold;
+
+        }
+
+        #discountedPrice {
+
+            font-size: 20px;
+            font-weight: 600;
+            color: red;
+            padding-left: 10%;
+        }
+
+
+        #detailPage {
+            padding-top: 2.5%;
+            padding-right: 2%;
+        }
+
+        #closeButton1 {
+            float: right;
+            border: none;
+            padding-right: 15%;
+            width: 200px;
+            border: none;
+            background-color:transparent;
+            font-size: 50px;
+
+        }
+
+        body {
+            background-color: rgb(235, 235, 233);
+        }
+
+        #cart {
+            height: 30px;
+            width: 40px;
+            padding-left: 10px;
+        }
+
+        #cartImage {
+            height: 40px;
+            width: 40px;
+            padding-left: 10px;
+        }
+
+        /* Green */
+        .buy {
+            border-color: #04AA6D;
+            color: green;
+
+            text-align: center;
+            float: middle;
+            font-weight: 600;
+            font-size: 30px;
+            width: 40%;
+        }
+
+        .buy:hover {
+            background-color: #04AA6D;
+            color: white;
+
+            float: middle;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+        .cart {
+            border-color: #2196F3;
+            color: dodgerblue;
+
+            width: 40%;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+        .cart:hover {
+            background: #2196F3;
+            color: white;
+
+
+        }
+
+        #details {
+            padding-left: 30%;
+        }
+
+        #key {
+            font-size: 19px;
+            font-weight: 600;
+            width: 40%;
+
+        }
+
+        #value {
+            font-size: 20px;
+            font-weight: 400;
+            padding-left: 5%;
+        }
+
+        #about {
+            padding-top: 5%;
+            padding-left: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+    <div id="header">
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ECommerce</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                            id="search">
+
+                    </form>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="furniture.html">Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="electronics.html">Electonics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="cart.html"> Cart</a>
+                            
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="outer">
+        <h2>
+            <a onclick="closePage()">
+                <button id="closeButton1" onclick="closePage()">X</button>
+            </a>
+        </h2>
+        <h2> </h2>
+        <div id="inner">
+            <div id="detailPage"></div>
+            <div id="description"></div>
+            <div id="about"></div>
+        </div>
+        <div id ="footer"></div>
+    </div>
+    <script>
+
+        function aboutThisItem() {
+            let about = `Do Check Partner offer section for Exciting offers from HP#
+Processor: Intel Core i5-1235U (up to 4.4 GHz with Intel Turbo Boost Technology, 12 MB L3 cache, 10 cores, 12 threads)| Memory & Storage: 16 GB DDR4-3200 MHz RAM (2 x 8 GB) | Storage: 512GB PCIe NVMe TLC M.2 SSD#
+Display & Graphics: 35.6 cm (14") diagonal, FHD, IPS, micro-edge, BrightView, 250 nits, 157 ppi | Graphics: Intel UHD Graphics#
+Operating System & Pre-installed Software: Pre-loaded Windows 11 Home 64 Single Language| Microsoft Office Home & Student 2021|McAfee LiveSafe (30 days free trial as default)| Pre-installed Alexa built-in- Your life simplified with Alexa. Just ask Alexa to check your calendar, create to-do lists, shopping lists, play music, set reminders, get latest news and control smart home.#
+Ports: 1 SuperSpeed USB Type-C 10Gbps signaling rate (USB Power Delivery, DisplayPort 1.4, HP Sleep and Charge), 2 SuperSpeed USB Type-A 5Gbps signaling rate,1 Headphone/microphone Combo,1 AC Smart pin, 1 HDMI 2.1#
+Features: Camera: HP Wide Vision 720p HD camera with temporal noise reduction and integrated dual array digital microphones| Audio: Audio by B&O, Dual Speakers| Keyboard: Full-size backlit natural silver keyboard , HP Imagepad with multi-touch gesture support| Battery: 3-cell, 43 Wh Li-ion, Support battery fast charge| Networking: MediaTek Wi-Fi CERTIFIED 6 MT7921 (2x2) and Bluetooth 5.2 combo, MU-MIMO supported| Fingerprint Reader#
+Why HP? What is good for the planet, is good for technology and good for us. Technology must be mindful of the environment and HP believes in sustainability.#
+In an unlikely case of product quality related issue, we may ask you to reach out to brand’s customer service support and seek resolution. We will require brand proof of issue to process replacement request.#`;
+            let aboutArray = about.split("#");
+            var result = `<h2>About</h2><ul >`;
+            for (point of aboutArray) {
+                let temp = `<li>${point}</li>`;
+                result += temp;
+            }
+            result += "</ul>";
+            return result;
+
+        }
+
+
+        function showDescriptionPage() {
+
+            let index = sessionStorage.getItem("arrIndex");
+            let itemINdex = sessionStorage.getItem("itemIndex");
+            let arr1 = [getWood(), getWatches(), getLaptops(), getAirConditioners()];
+            let items = arr1[index];
+            let item = items[itemINdex];
+            let description = item.details;
+            var result = `<div id="details">
+<table> `
+
+            let arr = description.split("#");
+            for (item of arr) {
+                let x = item.split("*");
+                result += `<tr>
+        <td id ="key">${x[0]}</td>
+        <td id="value">${x[1]}</td>
+    </tr>`;
+            }
+            result += `  </table>
+        </div>`;
+            return result;
+        }
+    //    $("#footer").load("footer.html"); 
+        document.getElementById('detailPage').innerHTML = showDetailPage();
+        document.getElementById('description').innerHTML = showDescriptionPage();
+        document.getElementById('about').innerHTML = aboutThisItem();
+
+    </script>
+
+</body>
+
+</html>
